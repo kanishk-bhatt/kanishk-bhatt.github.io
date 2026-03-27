@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kanishk Bhatt — IT Graduate specializing in Machine Learning, Flutter & Full-Stack Development.">
+  <meta name="theme-color" content="#0a0a14">
+  <title>Kanishk Bhatt | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ═══ CUSTOM CURSOR ═══ -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- ═══ PARTICLES CANVAS ═══ -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ═══ BACK TO TOP ═══ -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ═══════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo">KB.</a>
+    <div class="nav-links" id="nav-links">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#education" class="nav-link">Education</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    <a href="https://drive.google.com/file/d/1rXUHfnFI5DVr0OyHvB_hh_gQTqbGyfUO/view?usp=sharing" target="_blank" rel="noopener" class="nav-resume magnetic-btn">
+      <i class="fas fa-download"></i> Resume
+    </a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══ MOBILE MENU ═══ -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#skills" class="mobile-link">Skills</a>
+    <a href="#education" class="mobile-link">Education</a>
+    <a href="#experience" class="mobile-link">Experience</a>
+    <a href="#projects" class="mobile-link">Projects</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════ -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="badge-dot-green"></span>
+          Available for Opportunities
+        </div>
+        <h1 class="hero-heading">
+          Hi, I'm<br>
+          <span class="gradient-text">Kanishk Bhatt</span>
+        </h1>
+        <p class="hero-role"><span id="typed-role"></span><span class="typed-cursor">|</span></p>
+        <p class="hero-desc">
+          I am an IT graduate with a passion for machine learning, mobile app development, and building clean digital solutions. I love turning data into decisions and ideas into impactful applications.
+        </p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary magnetic-btn">
+            <i class="fas fa-paper-plane"></i> Get In Touch
+          </a>
+          <a href="https://drive.google.com/file/d/1rXUHfnFI5DVr0OyHvB_hh_gQTqbGyfUO/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline magnetic-btn">
+            <i class="fas fa-file-download"></i> Download Resume
+          </a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="profile-ring">
+          <div class="ring-rotate"></div>
+          <img src="kanishk.jpg" alt="Kanishk Bhatt" class="profile-photo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       ABOUT
+       ═══════════════════════════════════════ -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">ABOUT ME</span>
+        <h2 class="section-title">Know Me Better</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text" data-aos="fade-right">
+          <p>I am an IT graduate from <strong>M.K. Bhavnagar University</strong> with hands-on experience in machine learning, mobile development, and data analysis. I enjoy solving real-world problems through code and building applications that make a difference.</p>
+          <p>With real-world ML experience at <strong>Cognifyz Technologies</strong>, I've built classification models, run EDA pipelines, and turned raw data into actionable insights. When I'm not training models, I craft responsive mobile apps with Flutter and Firebase.</p>
+          <p>I'm always eager to learn, collaborate, and push beyond my comfort zone — whether it's mastering a new framework or exploring the latest in AI and automation.</p>
+        </div>
+        <div class="about-stats" data-aos="fade-left">
+          <div class="stat-card">
+            <span class="stat-number">11+</span>
+            <span class="stat-label">Technical Skills</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Languages Known</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SKILLS
+       ═══════════════════════════════════════ -->
+  <section id="skills" class="section section-alt">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">SKILLS</span>
+        <h2 class="section-title">My Technical Arsenal</h2>
+        <div class="section-line"></div>
+        <p class="section-subtitle">Technologies and tools I work with to build amazing digital experiences.</p>
+      </div>
+
+      <h3 class="skills-cat-title" data-aos="fade-up"><i class="fas fa-code"></i> Programming Languages & Frameworks</h3>
+      <div class="skills-grid" data-aos="fade-up">
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C"><span>C</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"><span>C++</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"><span>Java</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP"><span>PHP</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><span>Python</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL"><span>SQL (Adv.)</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"><span>JavaScript</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML"><span>HTML</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS"><span>CSS</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter"><span>Flutter</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart"><span>Dart</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase"><span>Firebase</span></div>
+      </div>
+
+      <h3 class="skills-cat-title" data-aos="fade-up"><i class="fas fa-tools"></i> Tools & Technologies</h3>
+      <div class="tools-grid" data-aos="fade-up">
+        <div class="tool-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"><span>Visual Studio Code</span></div>
+        <div class="tool-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" alt="Android Studio"><span>Android Studio</span></div>
+        <div class="tool-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"><span>Git</span></div>
+        <div class="tool-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"><span>GitHub</span></div>
+        <div class="tool-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas"><span>Pandas</span></div>
+        <div class="tool-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-learn"><span>Scikit-Learn</span></div>
+      </div>
+
+      <h3 class="skills-cat-title" data-aos="fade-up"><i class="fas fa-brain"></i> Soft Skills</h3>
+      <div class="soft-skills" data-aos="fade-up">
+        <span class="soft-pill">Growth Mindset</span>
+        <span class="soft-pill">Team Collaboration</span>
+        <span class="soft-pill">Communication</span>
+        <span class="soft-pill">Time Management</span>
+        <span class="soft-pill">Problem Solving</span>
+        <span class="soft-pill">Adaptability</span>
+        <span class="soft-pill">Critical Thinking</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       EDUCATION
+       ═══════════════════════════════════════ -->
+  <section id="education" class="section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">EDUCATION</span>
+        <h2 class="section-title">Academic Journey</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="timeline">
+        <!-- B.Sc. IT -->
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="status-badge completed"><i class="fas fa-check-circle"></i> COMPLETED</span>
+              <span class="timeline-date"><i class="fas fa-calendar-alt"></i> Graduated 2025</span>
+            </div>
+            <h3 class="timeline-title">Bachelor of Science in Information Technology (B.Sc. I.T.)</h3>
+            <p class="timeline-institution"><i class="fas fa-university"></i> Shree Swaminarayan College of Computer Science (M.K. Bhavnagar University) — Bhavnagar, Gujarat</p>
+            <ul class="timeline-bullets">
+              <li>B.Sc. in Information Technology with a strong focus on core Computer Science subjects.</li>
+              <li>Skilled in programming (C, C++, Java, PHP), databases, operating systems, and networking.</li>
+              <li>Applied logical and analytical thinking through data structures and algorithms.</li>
+              <li>Enhanced communication and soft skills through Business Communication & Personality Development.</li>
+              <li>Completed project work with hands-on experience in software development.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span>Programming</span>
+              <span>Databases</span>
+              <span>Networking</span>
+              <span>Data Structures</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HSC -->
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="status-badge completed"><i class="fas fa-check-circle"></i> COMPLETED</span>
+              <span class="timeline-date"><i class="fas fa-calendar-alt"></i> 2022</span>
+            </div>
+            <h3 class="timeline-title">Higher Secondary Certificate (HSC) — Science</h3>
+            <p class="timeline-institution"><i class="fas fa-university"></i> Bhavnagar, Gujarat</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       EXPERIENCE
+       ═══════════════════════════════════════ -->
+  <section id="experience" class="section section-alt">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">EXPERIENCE</span>
+        <h2 class="section-title">Professional Journey</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="experience-card" data-aos="fade-up">
+        <div class="exp-card-top"></div>
+        <div class="exp-card-body">
+          <div class="exp-header">
+            <div>
+              <h3 class="exp-title">Machine Learning Intern</h3>
+              <p class="exp-company">Cognifyz Technologies · Remote</p>
+            </div>
+            <span class="exp-date-badge">Feb – Mar 2026</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Completed a month-long internship focusing on Machine Learning technologies.</li>
+            <li>Built ML classification models using Python, Scikit-Learn, and Pandas.</li>
+            <li>Gained hands-on experience in data preprocessing, feature engineering, and EDA pipelines.</li>
+            <li>Developed and trained predictive models for various datasets.</li>
+            <li>Collaborative problem-solving in production ML workflows.</li>
+          </ul>
+          <div class="exp-tags">
+            <span>Python</span><span>Machine Learning</span><span>Pandas</span><span>Scikit-Learn</span><span>EDA</span>
+          </div>
+          <div class="exp-actions">
+            <a href="https://drive.google.com/file/d/1aC0X60rC8nCFFxt_l4vYVhQoQotlT2qd/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-primary magnetic-btn">
+              <i class="fas fa-certificate"></i> View Certificate
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PROJECTS
+       ═══════════════════════════════════════ -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">PROJECTS</span>
+        <h2 class="section-title">What I've Built</h2>
+        <div class="section-line"></div>
+        <p class="section-subtitle">Bringing ideas to life through code and collaboration.</p>
+      </div>
+
+      <!-- BOOKFLIX -->
+      <div class="project-card" data-aos="fade-up">
+        <div class="project-card-top"></div>
+        <div class="project-card-body">
+          <div class="project-header">
+            <h3 class="project-title">BOOKFLIX — Book Reading App</h3>
+            <div class="project-meta">
+              <span><i class="fas fa-users"></i> Team of 2</span>
+              <span><i class="fas fa-clock"></i> 3 Months</span>
+            </div>
+          </div>
+          <div class="project-tech-tags">
+            <span>Flutter</span><span>Dart</span><span>API</span><span>Firebase Auth</span><span>Firebase</span>
+          </div>
+          <ul class="project-bullets">
+            <li>Developed a book reading and discovery app using Flutter for a seamless mobile experience.</li>
+            <li>Integrated Google Books API for real-time search and 4 dynamic recommendation panels: Books, Novels, Mangas, Trending.</li>
+            <li>Implemented Firebase for user authentication and cloud synchronization.</li>
+            <li>Collaborated in a 2-member team following Agile practices with version control on GitHub.</li>
+            <li>Focused on responsive UI/UX design, smooth navigation, and efficient backend integration.</li>
+          </ul>
+          <div class="project-actions">
+            <a href="https://github.com/kxnishk-79/Project-BookFlix" target="_blank" rel="noopener" class="btn btn-primary magnetic-btn">
+              <i class="fab fa-github"></i> View on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio -->
+      <div class="project-card" data-aos="fade-up">
+        <div class="project-card-top"></div>
+        <div class="project-card-body">
+          <div class="project-header">
+            <h3 class="project-title">3D Interactive Portfolio</h3>
+            <div class="project-meta">
+              <span><i class="fas fa-user"></i> Personal</span>
+              <span><i class="fas fa-clock"></i> This Site</span>
+            </div>
+          </div>
+          <div class="project-tech-tags">
+            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Canvas API</span>
+          </div>
+          <ul class="project-bullets">
+            <li>Designed and built a fully interactive portfolio with particle background, custom cursor, and magnetic buttons.</li>
+            <li>Implemented smooth scroll animations, typing text effect, and rotating profile ring.</li>
+            <li>Pure HTML/CSS/JavaScript — zero frameworks, zero dependencies.</li>
+            <li>Fully responsive across desktop, tablet, and mobile breakpoints.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CERTIFICATIONS
+       ═══════════════════════════════════════ -->
+  <section id="certifications" class="section section-alt">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">CERTIFICATIONS</span>
+        <h2 class="section-title">Certifications & Achievements</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="cert-grid">
+        <div class="cert-card" data-aos="fade-up">
+          <div class="cert-icon"><i class="fas fa-robot"></i></div>
+          <div class="cert-info">
+            <h4 class="cert-title">AI Mastermind Masterclass <a href="https://www.linkedin.com/posts/kanishk-b-389839304_artificialintelligence-ai-learning-activity-7391876980650024962-z3GV" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i></a></h4>
+            <p class="cert-issuer">Outskill — Vaibhav Sisinty</p>
+            <p class="cert-detail">Certificate of Completion • Prompt Engineering, AI Workflows, Ethics & Strategy</p>
+          </div>
+        </div>
+        <div class="cert-card" data-aos="fade-up">
+          <div class="cert-icon"><i class="fas fa-brain"></i></div>
+          <div class="cert-info">
+            <h4 class="cert-title">Machine Learning Internship</h4>
+            <p class="cert-issuer">Cognifyz Technologies</p>
+            <p class="cert-detail">Certificate of Completion • Feb–Mar 2026</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       LANGUAGES
+       ═══════════════════════════════════════ -->
+  <section class="section languages-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Languages I Speak</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="languages-grid" data-aos="fade-up">
+        <div class="lang-card">
+          <div class="lang-ring" data-percent="90">
+            <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="ring-bg"/><circle cx="60" cy="60" r="52" class="ring-fill" style="--percent:90"/></svg>
+          </div>
+          <span class="lang-name">Gujarati</span>
+          <span class="lang-level">Native</span>
+        </div>
+        <div class="lang-card">
+          <div class="lang-ring" data-percent="85">
+            <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="ring-bg"/><circle cx="60" cy="60" r="52" class="ring-fill" style="--percent:85"/></svg>
+          </div>
+          <span class="lang-name">Hindi</span>
+          <span class="lang-level">Fluent</span>
+        </div>
+        <div class="lang-card">
+          <div class="lang-ring" data-percent="75">
+            <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="ring-bg"/><circle cx="60" cy="60" r="52" class="ring-fill" style="--percent:75"/></svg>
+          </div>
+          <span class="lang-name">English</span>
+          <span class="lang-level">Professional</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CONTACT
+       ═══════════════════════════════════════ -->
+  <section id="contact" class="section section-alt">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">CONTACT</span>
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="section-line"></div>
+        <p class="section-subtitle">Have a project in mind or want to collaborate? Let's talk!</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info" data-aos="fade-right">
+          <h3 class="contact-info-heading">Let's Build Something Amazing</h3>
+          <p class="contact-info-text">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out!</p>
+
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <span class="contact-label">Email</span>
+              <a href="mailto:work.kanishkb@gmail.com">work.kanishkb@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+            <div>
+              <span class="contact-label">Phone</span>
+              <a href="tel:+917983224056">+91 7983224056</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <span class="contact-label">Location</span>
+              <span>Bhavnagar, Gujarat, India</span>
+            </div>
+          </div>
+
+          <div class="contact-socials">
+            <a href="https://www.linkedin.com/in/kanishk-b-389839304/" target="_blank" rel="noopener" class="social-icon magnetic-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/kanishk._.bhatt/" target="_blank" rel="noopener" class="social-icon magnetic-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/kxnishk-79" target="_blank" rel="noopener" class="social-icon magnetic-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap" data-aos="fade-left">
+          <form class="contact-form" id="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" id="cf-name" required placeholder="John Doe" autocomplete="name">
+                <label for="cf-name">Full Name</label>
+              </div>
+              <div class="form-group">
+                <input type="email" id="cf-email" required placeholder="john@example.com" autocomplete="email">
+                <label for="cf-email">Email Address</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" id="cf-subject" placeholder="Project Discussion">
+              <label for="cf-subject">Subject</label>
+            </div>
+            <div class="form-group">
+              <textarea id="cf-message" rows="5" required placeholder="Tell me about your project..."></textarea>
+              <label for="cf-message">Message</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full magnetic-btn">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="footer-logo">Kanishk Bhatt</a>
+          <p class="footer-tagline">Building intelligent solutions, one line at a time.</p>
+        </div>
+        <div class="footer-links-col">
+          <h4>Quick Links</h4>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#education">Education</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-links-col">
+          <h4>Connect</h4>
+          <a href="https://www.linkedin.com/in/kanishk-b-389839304/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/kxnishk-79" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.instagram.com/kanishk._.bhatt/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Kanishk Bhatt. Designed & Coded with 💙</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
