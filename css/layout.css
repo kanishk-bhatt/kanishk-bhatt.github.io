@@ -1,0 +1,134 @@
+/* ═══════════════════════════════════════
+   LAYOUT — Sections, Grids, Containers
+   ═══════════════════════════════════════ */
+
+/* ── Sections ── */
+.section {
+  position: relative;
+  z-index: 2;
+  padding: 120px 0;
+}
+.section-alt {
+  background: var(--bg2);
+}
+
+/* ── Section Header with Lamp Effect ── */
+.section-header {
+  text-align: center;
+  margin-bottom: 70px;
+  position: relative;
+}
+.lamp-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lamp-glow {
+  position: absolute;
+  top: -60px;
+  width: 300px;
+  height: 120px;
+  background: radial-gradient(ellipse at center, rgba(255,107,53,0.15) 0%, transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-bottom: 16px;
+  font-family: var(--mono);
+}
+.section-tag::before,
+.section-tag::after {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 1.5px;
+  background: var(--gradient-btn);
+}
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.section-line {
+  width: 60px;
+  height: 3px;
+  margin: 16px auto 0;
+  background: var(--gradient-btn);
+  border-radius: 3px;
+}
+.section-subtitle {
+  font-size: 0.92rem;
+  color: var(--text-dim);
+  margin-top: 16px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Dot Pattern Background ── */
+.dot-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Grid Pattern Background ── */
+.grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Bento Grid ── */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.bento-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 32px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s, box-shadow 0.4s;
+}
+.bento-card:hover {
+  border-color: rgba(255,107,53,0.25);
+  box-shadow: 0 8px 40px rgba(255,107,53,0.06);
+}
+.bento-card.span-2 {
+  grid-column: span 2;
+}
+.bento-card.span-full {
+  grid-column: 1 / -1;
+}
+
+/* ── Two Column Grid ── */
+.two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}

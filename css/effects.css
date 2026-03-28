@@ -1,0 +1,346 @@
+/* ═══════════════════════════════════════
+   EFFECTS — Aurora, Meteors, Beams, Glows
+   Inspired by ReactBits, MagicUI, Aceternity
+   ═══════════════════════════════════════ */
+
+/* ═══ PARTICLES CANVAS ═══ */
+#particles-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ═══ AURORA BACKGROUND ═══ */
+.aurora-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+  will-change: transform;
+}
+.aurora-1 {
+  width: 600px;
+  height: 600px;
+  background: var(--accent);
+  top: -200px;
+  left: -100px;
+  animation: aurora-drift-1 12s ease-in-out infinite alternate;
+}
+.aurora-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--accent-gold);
+  bottom: -150px;
+  right: -100px;
+  animation: aurora-drift-2 15s ease-in-out infinite alternate;
+}
+.aurora-3 {
+  width: 400px;
+  height: 400px;
+  background: var(--accent-rose);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: aurora-drift-3 18s ease-in-out infinite alternate;
+  opacity: 0.15;
+}
+@keyframes aurora-drift-1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(80px, 60px) scale(1.15); }
+}
+@keyframes aurora-drift-2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-60px, -80px) scale(1.1); }
+}
+@keyframes aurora-drift-3 {
+  0%   { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+  100% { transform: translate(-40%, -60%) scale(1.2) rotate(30deg); }
+}
+
+/* ═══ METEORS — MagicUI style ═══ */
+.meteor {
+  position: fixed;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  animation: meteor-fall 1.5s linear forwards;
+  box-shadow: 0 0 6px rgba(255,107,53,0.4);
+}
+@keyframes meteor-fall {
+  0% {
+    opacity: 1;
+    transform: translateY(-100px) translateX(0) rotate(-30deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(-200px) rotate(-30deg);
+  }
+}
+
+/* ═══ SHOOTING STARS — Aceternity style ═══ */
+.shooting-star {
+  position: fixed;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent-gold), transparent);
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  animation: shoot-star 2s ease-out forwards;
+  box-shadow: 0 0 4px rgba(255,193,7,0.6);
+}
+@keyframes shoot-star {
+  0% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scaleX(1);
+    width: 60px;
+  }
+  70% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translateX(300px) translateY(150px) scaleX(0.3);
+    width: 120px;
+  }
+}
+
+/* ═══ SPOTLIGHT — Aceternity style ═══ */
+.spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255,107,53,0.04),
+    transparent 60%
+  );
+  transition: background 0.15s ease;
+}
+
+/* ═══ BORDER BEAM — MagicUI style ═══ */
+.border-beam {
+  position: relative;
+  overflow: hidden;
+}
+.border-beam::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0%,
+    var(--accent) 10%,
+    var(--accent-gold) 20%,
+    transparent 30%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: beam-rotate 4s linear infinite;
+  pointer-events: none;
+}
+@keyframes beam-rotate {
+  to { --beam-angle: 360deg; }
+}
+/* Fallback for beam-rotate since custom property animation needs @property */
+@property --beam-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ═══ MOVING BORDER — Aceternity style ═══ */
+.moving-border {
+  position: relative;
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.moving-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    var(--accent) 25%,
+    transparent 50%
+  );
+  border-radius: inherit;
+  animation: border-spin 3s linear infinite;
+  z-index: -1;
+}
+.moving-border::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: var(--card);
+  border-radius: calc(var(--radius) - 2px);
+  z-index: -1;
+}
+@keyframes border-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ═══ SHIMMER EFFECT — MagicUI Shimmer Button ═══ */
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+  );
+  animation: shimmer-sweep 3s ease-in-out infinite;
+}
+@keyframes shimmer-sweep {
+  0%   { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* ═══ GLOW CARD — Glowing effect on hover ═══ */
+.glow-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.4s, box-shadow 0.4s;
+}
+.glow-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    400px circle at var(--card-x, 50%) var(--card-y, 50%),
+    rgba(255,107,53,0.08),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.glow-card:hover::before {
+  opacity: 1;
+}
+.glow-card:hover {
+  border-color: rgba(255,107,53,0.2);
+  box-shadow: 0 8px 40px rgba(255,107,53,0.06);
+}
+
+/* ═══ TRACING BEAM — Aceternity style ═══ */
+.tracing-beam-container {
+  position: relative;
+  padding-left: 60px;
+}
+.tracing-beam-line {
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255,255,255,0.06);
+}
+.tracing-beam-fill {
+  position: absolute;
+  left: 24px;
+  top: 0;
+  width: 2px;
+  height: 0%;
+  background: var(--gradient);
+  transition: height 0.1s linear;
+  box-shadow: 0 0 8px rgba(255,107,53,0.4);
+}
+.tracing-beam-dot {
+  position: absolute;
+  left: 18px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  transition: background 0.3s, box-shadow 0.3s;
+  z-index: 2;
+}
+.tracing-beam-dot.active {
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(255,107,53,0.5);
+}
+
+/* ═══ FLOATING PARTICLES (Glowing Stars) ═══ */
+.star-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: twinkle 3s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50%      { opacity: 0.8; transform: scale(1.5); }
+}
+
+/* ═══ CUSTOM CURSOR ═══ */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: width 0.2s, height 0.2s, margin 0.2s;
+}
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(255,107,53,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: width 0.35s var(--ease), height 0.35s var(--ease),
+              border-color 0.3s, margin 0.35s var(--ease);
+}
+.cursor-dot.hovering {
+  width: 14px;
+  height: 14px;
+  margin: -4px 0 0 -4px;
+  background: var(--accent);
+  mix-blend-mode: difference;
+}
+.cursor-ring.hovering {
+  width: 50px;
+  height: 50px;
+  margin: -7px 0 0 -7px;
+  border-color: var(--accent);
+}

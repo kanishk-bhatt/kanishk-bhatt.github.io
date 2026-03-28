@@ -1,0 +1,118 @@
+/* ═══════════════════════════════════════
+   BASE — Design Tokens, Reset, Typography
+   Palette: Sunset Ember (Warm Orange / Amber / Gold)
+   ═══════════════════════════════════════ */
+:root {
+  /* ── Backgrounds ── */
+  --bg:         #050510;
+  --bg2:        #0a0a1a;
+  --bg3:        #10102a;
+  --card:       rgba(12, 12, 28, 0.75);
+  --card-border:rgba(255,255,255,0.06);
+  --card-hover: rgba(255,255,255,0.10);
+
+  /* ── Text ── */
+  --text:       #eae8ff;
+  --text-dim:   #9895b0;
+  --text-muted: #5a5678;
+
+  /* ── Accent — Sunset Ember ── */
+  --accent:     #ff6b35;
+  --accent-2:   #ffab40;
+  --accent-gold:#ffc107;
+  --accent-rose:#ff4757;
+  --green:      #00e676;
+
+  /* ── Gradients ── */
+  --gradient:     linear-gradient(135deg, #ff6b35 0%, #ff8c42 40%, #ffab40 70%, #ffc107 100%);
+  --gradient-btn: linear-gradient(135deg, #ff6b35 0%, #ffab40 100%);
+  --gradient-text:linear-gradient(135deg, #ff6b35, #ff8c42, #ffab40, #ffc107);
+  --gradient-glow:linear-gradient(135deg, rgba(255,107,53,0.4), rgba(255,171,64,0.2), rgba(255,193,7,0.1));
+
+  /* ── Typography ── */
+  --font:       'Space Grotesk', sans-serif;
+  --mono:       'JetBrains Mono', 'Fira Code', monospace;
+
+  /* ── Spacing & Sizing ── */
+  --max-w:      1200px;
+  --radius:     16px;
+  --radius-sm:  10px;
+  --radius-xs:  6px;
+
+  /* ── Animation ── */
+  --ease:       cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out:   cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-spring:cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ═══ RESET ═══ */
+*, *::before, *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::selection {
+  background: rgba(255,107,53,0.25);
+  color: var(--accent);
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: none;
+}
+button {
+  cursor: none;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ═══ SCROLLBAR ═══ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-btn);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ═══ FOCUS ═══ */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ═══ SCROLL PROGRESS BAR ═══ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--gradient-btn);
+  z-index: 10000;
+  transition: width 0.05s linear;
+  box-shadow: 0 0 10px rgba(255,107,53,0.5);
+}
