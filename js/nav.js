@@ -1,189 +1,216 @@
 /* ═══════════════════════════════════════
-   NAV — Navbar, Floating Dock, Hamburger,
-   Smooth Scroll, Back-to-Top
+   NAV — Scroll tracking, Dock magnification,
+   Theme toggle, Form handling, Back to top
    ═══════════════════════════════════════ */
-(function () {
-  'use strict';
 
-  /* ─── NAVBAR SCROLL ─── */
+(function() {
+
+  /* ═══ SCROLL PROGRESS ═══ */
+  const scrollBar = document.getElementById('scroll-progress');
+  function updateScrollProgress() {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+    if (scrollBar) scrollBar.style.width = pct + '%';
+  }
+
+  /* ═══ NAVBAR SCROLLED STATE ═══ */
   const navbar = document.getElementById('navbar');
-  const sections = document.querySelectorAll('.section, .hero');
-  const navLinks = document.querySelectorAll('.nav-link');
+  function updateNavbar() {
+    if (!navbar) return;
+    if (window.scrollY > 50) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  }
+
+  /* ═══ ACTIVE SECTION TRACKING ═══ */
+  const sections = document.querySelectorAll('section[id]');
   const dockItems = document.querySelectorAll('.dock-item');
 
-  function updateActiveSection() {
-    const scrollY = window.scrollY;
-
-    // Navbar background
-    if (navbar) {
-      navbar.classList.toggle('scrolled', scrollY > 60);
-    }
-
-    // Find current section
+  function updateActive() {
     let current = '';
-    sections.forEach(s => {
-      const top = s.offsetTop - 150;
-      if (scrollY >= top) current = s.getAttribute('id');
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 200;
+      if (window.scrollY >= top) current = sec.id;
     });
-
-    // Update nav links
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
-    });
-
-    // Update dock items
     dockItems.forEach(item => {
-      item.classList.remove('active');
-      if (item.getAttribute('href') === '#' + current) item.classList.add('active');
+      const href = item.getAttribute('href');
+      if (href === '#' + current) item.classList.add('active');
+      else item.classList.remove('active');
     });
   }
 
-  window.addEventListener('scroll', updateActiveSection);
-  updateActiveSection();
-
-  /* ─── HAMBURGER ─── */
-  const hamburger = document.getElementById('nav-hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
-
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-    });
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
+  /* ═══ BACK TO TOP ═══ */
+  const backToTop = document.getElementById('back-to-top');
+  function updateBackToTop() {
+    if (!backToTop) return;
+    if (window.scrollY > 400) backToTop.classList.add('visible');
+    else backToTop.classList.remove('visible');
   }
-
-  /* ─── BACK TO TOP ─── */
-  const btt = document.getElementById('back-to-top');
-  if (btt) {
-    window.addEventListener('scroll', () => {
-      btt.classList.toggle('visible', window.scrollY > 500);
-    });
-    btt.addEventListener('click', () => {
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  /* ─── SMOOTH SCROLL — All anchor links ─── */
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector(anchor.getAttribute('href'));
+  /* ═══ COMBINED SCROLL HANDLER ═══ */
+  let scrollTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      requestAnimationFrame(() => {
+        updateScrollProgress();
+        updateNavbar();
+        updateActive();
+        updateBackToTop();
+        triggerAOS();
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  });
+
+  /* ═══ AOS (Scroll-in animations) ═══ */
+  function triggerAOS() {
+    const elements = document.querySelectorAll('[data-aos]');
+    elements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const delay = parseInt(el.getAttribute('data-aos-delay') || '0');
+      if (rect.top < window.innerHeight * 0.85) {
+        setTimeout(() => el.classList.add('aos-in'), delay);
+      }
+    });
+  }
+  // Initial trigger
+  setTimeout(triggerAOS, 300);
+
+  /* ═══ SMOOTH ANCHOR NAV ═══ */
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const target = document.querySelector(link.getAttribute('href'));
       if (target) {
+        e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth' });
       }
     });
   });
 
-  /* ─── FLOATING DOCK — macOS magnify effect ─── */
-  const dock = document.querySelector('.floating-dock');
+  /* ═══ DOCK MAGNIFICATION — macOS style ═══ */
+  const dock = document.getElementById('floating-dock');
   if (dock) {
-    const items = dock.querySelectorAll('.dock-item');
-
     dock.addEventListener('mousemove', (e) => {
-      items.forEach(item => {
+      dockItems.forEach(item => {
         const rect = item.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const dist = Math.abs(e.clientX - cx);
+        const itemCenter = rect.left + rect.width / 2;
+        const dist = Math.abs(e.clientX - itemCenter);
         const maxDist = 120;
-
         if (dist < maxDist) {
-          const scale = 1 + 0.3 * (1 - dist / maxDist);
-          item.style.width = (42 * scale) + 'px';
-          item.style.height = (42 * scale) + 'px';
+          const scale = 1 + (1 - dist / maxDist) * 0.3;
+          const lift = (1 - dist / maxDist) * 10;
+          item.style.transform = `translateY(-${lift}px) scale(${scale})`;
         } else {
-          item.style.width = '';
-          item.style.height = '';
+          item.style.transform = '';
         }
       });
     });
 
     dock.addEventListener('mouseleave', () => {
-      items.forEach(item => {
-        item.style.width = '';
-        item.style.height = '';
+      dockItems.forEach(item => {
+        item.style.transform = '';
       });
     });
   }
 
-  /* ─── CONTACT FORM — Formspree ─── */
+  /* ═══ THEME TOGGLE ═══ */
+  const themeToggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('kb-theme') || 'dark';
+  if (savedTheme === 'light') html.setAttribute('data-theme', 'light');
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', next === 'light' ? 'light' : '');
+      if (next === 'dark') html.removeAttribute('data-theme');
+      else html.setAttribute('data-theme', 'light');
+      localStorage.setItem('kb-theme', next);
+    });
+  }
+
+  /* ═══ NUMBER TICKER ═══ */
+  const tickers = document.querySelectorAll('.ticker');
+  const tickerOb = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.getAttribute('data-target'));
+        let current = 0;
+        const increment = Math.ceil(target / 40);
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = current;
+        }, 40);
+        tickerOb.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  tickers.forEach(t => tickerOb.observe(t));
+
+  /* ═══ FORM HANDLING (Formspree) ═══ */
   const form = document.getElementById('contact-form');
+  const formStatus = document.getElementById('form-status');
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]');
-      const statusEl = document.getElementById('form-status');
-      const originalHTML = btn.innerHTML;
-
+      const origText = btn.innerHTML;
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-      btn.style.pointerEvents = 'none';
+      btn.disabled = true;
 
       try {
-        const resp = await fetch(form.action, {
+        const res = await fetch(form.action, {
           method: 'POST',
           body: new FormData(form),
           headers: { 'Accept': 'application/json' }
         });
-
-        if (resp.ok) {
-          if (statusEl) {
-            statusEl.className = 'form-status success';
-            statusEl.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+        if (res.ok) {
+          if (formStatus) {
+            formStatus.textContent = '✅ Message sent! I\'ll get back to you soon.';
+            formStatus.className = 'form-status success';
           }
-          btn.innerHTML = '<i class="fas fa-check"></i> Sent!';
           form.reset();
         } else {
-          throw new Error('Submit failed');
+          throw new Error('Failed');
         }
-      } catch (err) {
-        if (statusEl) {
-          statusEl.className = 'form-status error';
-          statusEl.textContent = '✗ Something went wrong. Please try again or email me directly.';
+      } catch {
+        if (formStatus) {
+          formStatus.textContent = '❌ Something went wrong. Try again.';
+          formStatus.className = 'form-status error';
         }
-        btn.innerHTML = '<i class="fas fa-times"></i> Failed';
       }
-
-      setTimeout(() => {
-        btn.innerHTML = originalHTML;
-        btn.style.pointerEvents = '';
-        if (statusEl) {
-          setTimeout(() => { statusEl.className = 'form-status'; }, 3000);
-        }
-      }, 3000);
+      btn.innerHTML = origText;
+      btn.disabled = false;
+      if (formStatus) setTimeout(() => { formStatus.textContent = ''; }, 5000);
     });
   }
 
-  /* ─── LANGUAGE RING SVG GRADIENT ─── */
-  const svgNS = 'http://www.w3.org/2000/svg';
-  const langRings = document.querySelectorAll('.lang-ring svg');
-  langRings.forEach(svg => {
-    if (svg.querySelector('defs')) return;
-    const defs = document.createElementNS(svgNS, 'defs');
-    const grad = document.createElementNS(svgNS, 'linearGradient');
-    grad.setAttribute('id', 'lang-gradient');
-    grad.setAttribute('x1', '0%');
-    grad.setAttribute('y1', '0%');
-    grad.setAttribute('x2', '100%');
-    grad.setAttribute('y2', '100%');
-    const stop1 = document.createElementNS(svgNS, 'stop');
-    stop1.setAttribute('offset', '0%');
-    stop1.setAttribute('stop-color', '#ff6b35');
-    const stop2 = document.createElementNS(svgNS, 'stop');
-    stop2.setAttribute('offset', '100%');
-    stop2.setAttribute('stop-color', '#ffc107');
-    grad.appendChild(stop1);
-    grad.appendChild(stop2);
-    defs.appendChild(grad);
-    svg.prepend(defs);
-  });
+  /* ═══ RESUME DOWNLOAD HANDLER ═══ */
+  const resumeBtn = document.getElementById('resume-download');
+  if (resumeBtn) {
+    resumeBtn.addEventListener('click', (e) => {
+      // Google Drive direct download URL
+      // The href already has export=download, just let it proceed
+    });
+  }
+
+  /* ═══ INIT ═══ */
+  updateScrollProgress();
+  updateNavbar();
+  updateActive();
+  updateBackToTop();
 
 })();

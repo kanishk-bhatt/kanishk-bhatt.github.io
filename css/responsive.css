@@ -1,151 +1,94 @@
 /* ═══════════════════════════════════════
-   RESPONSIVE — Breakpoints + Reduced Motion
+   RESPONSIVE — Breakpoints & Mobile
    ═══════════════════════════════════════ */
 
-/* ═══ LARGE SCREENS ═══ */
-@media (max-width: 1200px) {
-  .bento-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .projects-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* ═══ TABLETS ═══ */
+/* ── TABLET ── */
 @media (max-width: 1024px) {
   .container { padding: 0 28px; }
-  .navbar { padding: 14px 28px; }
-  .hero { padding: 90px 28px 50px; }
-  .hero-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .hero-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .hero-ctas { justify-content: center; }
-  .hero-desc { max-width: 100%; }
-  .hero-visual { order: -1; }
-  .two-col-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .cert-grid {
-    grid-template-columns: 1fr;
-  }
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .bento-grid {
-    grid-template-columns: 1fr;
-  }
-  .bento-card.span-2 {
-    grid-column: span 1;
-  }
-  .orbit-container {
-    width: 260px;
-    height: 260px;
-  }
+  .about-grid { grid-template-columns: 1fr; gap: 30px; }
+  .contact-wrapper { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+  .hero-content { flex-direction: column-reverse; text-align: center; }
+  .hero-text { text-align: center; }
+  .hero-desc { margin-left: auto; margin-right: auto; }
+  .hero-cta { justify-content: center; }
+  .hero-social { justify-content: center; }
+  .profile-card-wrapper { margin: 0 auto; }
 }
 
-/* ═══ PHONES ═══ */
+/* ── MOBILE ── */
 @media (max-width: 768px) {
   .container { padding: 0 20px; }
+  .section { padding: 80px 0 60px; }
+
+  /* Navbar */
   .navbar { padding: 12px 20px; }
-  .hero { padding: 80px 20px 40px; }
-  .section { padding: 80px 0; }
-  .nav-links,
-  .nav-resume { display: none; }
-  .nav-hamburger { display: flex; }
+  .navbar.scrolled { padding: 8px 20px; }
+
+  /* Hero */
+  .hero { padding: 80px 20px 120px; }
+  .hero-content { flex-direction: column-reverse; text-align: center; gap: 30px; }
+  .hero-text { text-align: center; }
+  .hero-desc { margin-left: auto; margin-right: auto; }
+  .hero-cta { justify-content: center; flex-direction: column; align-items: center; }
+  .hero-cta .btn { width: 100%; max-width: 280px; justify-content: center; }
+  .hero-social { justify-content: center; }
+  .profile-card-wrapper { width: 280px; margin: 0 auto; }
+  .profile-card { width: 280px; height: 360px; }
+
+  /* Grids */
+  .about-grid { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: repeat(3, 1fr); }
+  .skills-grid { gap: 10px; }
+  .skills-grid .skill-card { width: 90px; padding: 16px 10px; }
+  .skills-grid .skill-card i { font-size: 1.6rem; }
+  .skills-grid .skill-card span { font-size: 0.72rem; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .certs-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
-  .profile-container {
-    width: 240px;
-    height: 240px;
-  }
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
 
-  /* Hide custom cursor on touch */
-  .cursor-dot,
-  .cursor-ring { display: none !important; }
-  body { cursor: auto; }
-  a, button { cursor: pointer; }
+  /* Timeline */
+  .timeline { padding-left: 36px; }
+  .timeline::before { left: 12px; }
+  .timeline-dot { left: -30px; }
 
-  /* Reduce aurora for performance */
-  .aurora-blob { filter: blur(60px); opacity: 0.15; }
-
-  /* Floating dock adapt */
+  /* Dock — more responsive */
   .floating-dock {
-    gap: 4px;
-    padding: 8px 12px;
-    bottom: 16px;
-    border-radius: 16px;
-  }
-  .dock-item {
-    width: 36px;
-    height: 36px;
-    font-size: 0.85rem;
-  }
-  .dock-item:hover {
-    width: 40px;
-    height: 40px;
-  }
-
-  /* Reduce meteors */
-  .meteor { display: none; }
-
-  .languages-grid { gap: 40px; }
-}
-
-/* ═══ SMALL PHONES ═══ */
-@media (max-width: 480px) {
-  .hero-heading { font-size: 2rem; }
-  .skills-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .tools-grid {
-    grid-template-columns: 1fr;
-  }
-  .languages-grid { gap: 30px; }
-  .section-title {
-    font-size: 1.6rem;
-  }
-  .floating-dock {
+    padding: 8px 10px;
     gap: 2px;
-    padding: 6px 10px;
+    border-radius: 18px;
+    bottom: 14px;
   }
-  .dock-item {
-    width: 32px;
-    height: 32px;
-    font-size: 0.8rem;
-  }
+  .dock-item { width: 36px; height: 36px; font-size: 0.9rem; }
+  .dock-item:hover { transform: translateY(-6px) scale(1.1); }
+
+  /* Certificate modal */
+  .cert-modal { max-width: 95vw; }
+  .cert-modal-body iframe { width: 90vw; height: 50vh; }
+
+  /* Custom cursor hidden on mobile */
+  .custom-cursor, .cursor-dot { display: none; }
 }
 
-/* ═══ REDUCED MOTION ═══ */
+/* ── SMALL ── */
+@media (max-width: 480px) {
+  .about-stats { grid-template-columns: 1fr 1fr; }
+  .hero-social { gap: 8px; }
+  .dock-item { width: 32px; height: 32px; font-size: 0.82rem; }
+  .floating-dock { padding: 6px 8px; gap: 1px; }
+  .profile-card-wrapper { width: 260px; }
+  .profile-card { width: 260px; height: 340px; }
+  .skills-grid .skill-card { width: 80px; }
+  .cert-modal-body iframe { height: 40vh; }
+  .nav-resume { padding: 7px 14px; font-size: 0.75rem; }
+}
+
+/* ── REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation-duration: 0s !important;
+    transition-duration: 0.1s !important;
   }
-  [data-aos] {
-    opacity: 1;
-    transform: none;
-  }
-  .aurora-blob { animation: none !important; }
-  .marquee-track { animation: none !important; }
-  .profile-ring { animation: none !important; }
-  .orbit-icon-1, .orbit-icon-2, .orbit-icon-3, .orbit-icon-4,
-  .orbit-icon-5, .orbit-icon-6, .orbit-icon-7, .orbit-icon-8 {
-    animation: none !important;
-  }
+  .aurora-blob { animation: none; }
 }
